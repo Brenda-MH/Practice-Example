@@ -1,0 +1,17 @@
+{
+  "coffee": "orange",
+  "members": [
+    {
+      "firstName": "Walther",
+      "lastName": "Ortiz Morales",
+      "address": "Av. Central 123",
+      "birthDate": "2009-04-16",
+      "hobbies": ["Boxeo", "music", "videogames"],
+      "friends": [
+        { "firstName": "Vladimir" },
+        { "firstName": "Pablo" },
+        { "firstName": "Uriel" }
+      ]
+    }
+  ]
+}
