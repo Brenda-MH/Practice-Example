@@ -1,0 +1,92 @@
+{
+  "New item": {
+    "members": [
+      {
+        "firstName": "Walther",
+        "lastName": "Ortiz Morales",
+        "address": "Av. Central 123",
+        "birthDate": "2009-04-16",
+        "hobbies": [
+          "Boxeo",
+          "music",
+          "videogames"
+        ],
+        "friends": [
+          {
+            "firstName": "Vladimir"
+          },
+          {
+            "firstName": "Pablo"
+          },
+          {
+            "firstName": "Uriel"
+          }
+        ]
+      },
+      {
+        "firstName": "Vladimir",
+        "lastName": "Meza Uscanga",
+        "address": "Calle 31",
+        "birthDate": "2008-11-24",
+        "hobbies": [
+          "music",
+          "videogames",
+          "cinema"
+        ],
+        "friends": [
+          {
+            "firstName": "Kevin"
+          },
+          {
+            "firstName": "Maximiliano"
+          },
+          {
+            "firstName": "Walther"
+          }
+        ]
+      },
+      {
+        "firstName": "Brenda",
+        "lastName": "Montalvo Hernandez",
+        "address": "Cecadys",
+        "birthDate": "2009-12-08",
+        "hobbies": [
+          "Music",
+          "eat",
+          "clean"
+        ],
+        "friends": [
+          {
+            "firstName": "Adison"
+          },
+          {
+            "firstName": "Antonella"
+          },
+          {
+            "firstName": "Denis"
+          }
+        ]
+      },
+      {
+        "firstName": "Denisse",
+        "lastName": "Caballero Ortiz",
+        "address": "Colonia Zopilote calle 36",
+        "birthDate": "2008-11-06",
+        "hobbies": [
+          "Sleep"
+        ],
+        "friends": [
+          {
+            "firstName": "Diego"
+          },
+          {
+            "firstName": "Marely"
+          },
+          {
+            "firstName": "Brenda"
+          }
+        ]
+      }
+    ]
+  }
+}
