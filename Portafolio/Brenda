@@ -1,0 +1,13 @@
+
+{
+  "firstName": "Brenda",
+  "lastName": "Montalvo Hernandez",
+  "address": "Cecadys",
+  "birthDate": "2009-12-08",
+  "hobbies": ["Music", "eat", "clean"],
+  "friends": [
+    { "firstName": "Adison" },
+    { "firstName": "Antonella" },
+    { "firstName": "Denis" }
+  ]
+}
