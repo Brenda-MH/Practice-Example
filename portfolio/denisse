@@ -1,0 +1,12 @@
+{
+  "firstName": "Denisse",
+  "lastName": "Caballero Ortiz",
+  "address": "Colonia Zopilote calle 36",
+  "birthDate": "2008-11-06",
+  "hobbies": ["Sleep"],
+  "friends": [
+    { "firstName": "Diego" },
+    { "firstName": "Marely" },
+    { "firstName": "Brenda" }
+  ]
+}
