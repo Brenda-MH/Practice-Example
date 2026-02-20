@@ -1,8 +1,8 @@
 # Example finally
-Un "Examen" tiene preguntas que pueden ser de opción múltiple, abiertas o de relacionar columnas. La respuesta del alumno se guarda como un solo documento anidados
+An "Exam" contains questions that can be multiple-choice, open-ended, or matching. The student's response is saved as a single nested document.
 |Rol|Nombre completo|
 |---|--|
-|A|Caballero Ortíz Nancy Denisse |
-|B| Ortíz Morales Walther|
-|C| Montalvo Hernnadez Brenda Paola|
-|D| Uscanga Meza Vladimir |
+|The data modeler|Caballero Ortíz Nancy Denisse |
+|The Query Devepoler| Ortíz Morales Walther|
+|The integration specialist| Montalvo Hernnadez Brenda Paola|
+|The data seeder/QA| Uscanga Meza Vladimir |
