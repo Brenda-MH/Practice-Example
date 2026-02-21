@@ -1,0 +1,41 @@
+erDiagram
+    STUDENT ||--o{ EXAM_SUBMISSION : submits
+    EXAM ||--o{ QUESTION : contains
+    EXAM ||--o{ EXAM_SUBMISSION : generates
+    EXAM_SUBMISSION ||--|{ ANSWER : includes
+    QUESTION ||--o{ ANSWER : is_answered_by
+
+    STUDENT {
+        string studentId PK
+        string name
+        string email
+    }
+
+    EXAM {
+        string examId PK
+        string title
+        date examDate
+    }
+
+    QUESTION {
+        string questionId PK
+        string statement
+        string type
+        string examId FK
+    }
+
+    EXAM_SUBMISSION {
+        string submissionId PK
+        date submissionDate
+        float grade
+        string studentId FK
+        string examId FK
+    }
+
+    ANSWER {
+        string answerId PK
+        string content
+        string questionType
+        string submissionId FK
+        string questionId FK
+    }
