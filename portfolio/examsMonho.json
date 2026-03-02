@@ -1,0 +1,21 @@
+{
+  "_id": "RES_999",
+  "student_id": "STU_42",
+  "exam_id": "EXAM_001",
+  "submitted_at": "2026-03-15T10:30:00Z",
+  "total_score": 85,
+  "answers": [
+    {
+      "question_id": "Q_101",
+      "student_answer": "JavaScript Object Notation",
+      "is_correct": true,
+      "awarded_points": 10
+    },
+    {
+      "question_id": "Q_102",
+      "student_answer": "It is a binary representation of JSON.",
+      "is_correct": true,
+      "awarded_points": 15
+    }
+  ]
+}
