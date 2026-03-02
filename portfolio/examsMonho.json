@@ -1,21 +1,23 @@
 {
-  "_id": "RES_999",
-  "student_id": "STU_42",
-  "exam_id": "EXAM_001",
-  "submitted_at": "2026-03-15T10:30:00Z",
-  "total_score": 85,
-  "answers": [
+  "_id": "EXAM_001",
+  "subject": "Computer Science 101",
+  "max_score": 100,
+  "exam_date": "2026-03-15T09:00:00Z",
+  "questions": [
     {
       "question_id": "Q_101",
-      "student_answer": "JavaScript Object Notation",
-      "is_correct": true,
-      "awarded_points": 10
+      "type": "MULTIPLE_CHOICE",
+      "text": "What does JSON stand for?",
+      "options": ["Java Object Notation", "JavaScript Object Notation"],
+      "correct_option": "JavaScript Object Notation",
+      "points": 10
     },
     {
       "question_id": "Q_102",
-      "student_answer": "It is a binary representation of JSON.",
-      "is_correct": true,
-      "awarded_points": 15
+      "type": "OPEN",
+      "text": "Explain what a BSON is.",
+      "correct_answer": "Binary JSON used by MongoDB",
+      "points": 20
     }
   ]
 }
