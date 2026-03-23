@@ -6,3 +6,4 @@ An "Exam" contains questions that can be multiple-choice, open-ended, or matchin
 |The Query Devepoler| Ortíz Morales Walther|
 |The integration specialist| Montalvo Hernnadez Brenda Paola|
 |The data seeder/QA| Uscanga Meza Vladimir |
+| Scrum Master |Gomez Coria Barbara Guadalupe|
