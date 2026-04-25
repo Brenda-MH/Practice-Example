@@ -95,6 +95,3 @@ db.profiles.find({
 
 ---
 
-## Prompt de Referencia
-
-> "Explain how `$or` works in MongoDB syntax compared to SQL. Provide a code snippet for my [Project Context]."
