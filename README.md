@@ -5,5 +5,5 @@ An "Exam" contains questions that can be multiple-choice, open-ended, or matchin
 |The data modeler|Caballero Ortíz Nancy Denisse |
 |The Query Devepoler| Ortíz Morales Walther|
 |The integration specialist| Montalvo Hernnadez Brenda Paola|
-|The data seeder/QA| Uscanga Meza Vladimir |
+|The data seeder/QA| Meza Uzcanga Vladimir |
 | Scrum Master |Gomez Coria Barbara Guadalupe|
