@@ -19,40 +19,33 @@
 // In MongoDB, $lookup does the same thing inside a pipeline:
 //
 //   { $lookup: {
-//       from: "profiles",           -- the collection to join (like the right table)
-//       localField: "profileId",    -- field in exam_results (like the FK)
-//       foreignField: "_id",        -- field in profiles (like the PK)
-//       as: "studentInfo"           -- name for the joined array result
+//       from: "profiles",
+//       localField: "profileId",
+//       foreignField: "_id",
+//       as: "studentInfo"
 //   }}
 //
 // Key difference: $lookup returns an ARRAY, not a flat row.
-// You need $unwind (or array index) to flatten it.
+// You need $unwind to flatten it.
 // ------------------------------------------------------------
 
 
 // ============================================================
 // PIPELINE 1 — $project
-// Show only the fields we need, rename them, and add a
-// computed boolean field "passed" (score >= 60).
 // ============================================================
 db.exam_results.aggregate([
-
-  // Step 1: Keep only the fields we want in the output.
-  // 1 = include, 0 = exclude.
-  // We can also rename fields and compute new ones here.
   {
     $project: {
-      _id: 0,                        // hide the internal ID
-      examName: 1,                   // keep exam name as-is
-      examType: 1,                   // keep exam type as-is
-      score: 1,                      // keep score
-      maxScore: 1,                   // keep max score
-      passed: {                      // NEW computed field
-        $gte: ["$score", 60]         // true if score >= 60, false otherwise
+      _id: 0,
+      examName: 1,
+      examType: 1,
+      score: 1,
+      maxScore: 1,
+      passed: {
+        $gte: ["$score", 60]
       }
     }
   }
-
 ])
 
 // SQL equivalent:
@@ -63,17 +56,11 @@ db.exam_results.aggregate([
 
 // ============================================================
 // PIPELINE 2 — $sort
-// Rank exam results from highest score to lowest.
 // ============================================================
 db.exam_results.aggregate([
-
-  // Step 1: Sort all documents by score descending (highest first).
-  // Use 1 for ascending (A→Z, 0→9), -1 for descending (Z→A, 9→0).
   {
     $sort: { score: -1 }
   },
-
-  // Step 2: Show only the relevant fields in the output.
   {
     $project: {
       _id: 0,
@@ -82,7 +69,6 @@ db.exam_results.aggregate([
       maxScore: 1
     }
   }
-
 ])
 
 // SQL equivalent:
@@ -93,22 +79,14 @@ db.exam_results.aggregate([
 
 // ============================================================
 // PIPELINE 3 — $limit
-// Get only the top 5 results (useful for leaderboards).
 // ============================================================
 db.exam_results.aggregate([
-
-  // Step 1: Sort by score highest to lowest.
   {
     $sort: { score: -1 }
   },
-
-  // Step 2: Keep only the first 5 documents that passed the sort.
-  // Everything after position 5 is discarded.
   {
     $limit: 5
   },
-
-  // Step 3: Project clean output.
   {
     $project: {
       _id: 0,
@@ -117,7 +95,6 @@ db.exam_results.aggregate([
       maxScore: 1
     }
   }
-
 ])
 
 // SQL equivalent:
@@ -129,40 +106,23 @@ db.exam_results.aggregate([
 
 // ============================================================
 // PIPELINE 4 — $lookup
-// Join exam_results with profiles to get the student's name.
-//
-// This is the MongoDB answer to:
-// "I need to join data from 'users' to 'orders'."
-// In our case: join 'profiles' (users) to 'exam_results' (orders).
 // ============================================================
 db.exam_results.aggregate([
-
-  // Step 1: Perform the join.
-  // $lookup searches the "profiles" collection for documents
-  // where profiles._id matches exam_results.profileId.
-  // The matched profile(s) are added as an array called "studentInfo".
   {
     $lookup: {
-      from: "profiles",          // collection to join
-      localField: "profileId",   // field in exam_results
-      foreignField: "_id",       // field in profiles
-      as: "studentInfo"          // name of the output array
+      from: "profiles",
+      localField: "profileId",
+      foreignField: "_id",
+      as: "studentInfo"
     }
   },
-
-  // Step 2: $unwind flattens the "studentInfo" array into a single object.
-  // Without this, studentInfo is [ { name: "...", school: "..." } ] (array).
-  // After $unwind, it becomes { name: "...", school: "..." } (object).
   {
     $unwind: "$studentInfo"
   },
-
-  // Step 3: Project only the fields we want to show.
-  // We can access joined fields with "studentInfo.fieldName".
   {
     $project: {
       _id: 0,
-      studentName: "$studentInfo.name",    // field from joined collection
+      studentName: "$studentInfo.name",
       school: "$studentInfo.school",
       grade: "$studentInfo.grade",
       examName: 1,
@@ -170,7 +130,6 @@ db.exam_results.aggregate([
       maxScore: 1
     }
   }
-
 ])
 
 // SQL equivalent:
@@ -182,12 +141,8 @@ db.exam_results.aggregate([
 
 // ============================================================
 // PIPELINE 5 — Full Formatted Report (for UI)
-// Combines all four stages: $lookup + $project + $sort + $limit
-// This is the pipeline connected to the /api/reports endpoint.
 // ============================================================
 db.exam_results.aggregate([
-
-  // Step 1: Join exam_results with profiles.
   {
     $lookup: {
       from: "profiles",
@@ -196,20 +151,14 @@ db.exam_results.aggregate([
       as: "studentInfo"
     }
   },
-
-  // Step 2: Flatten the joined array into a single document.
   {
     $unwind: "$studentInfo"
   },
-
-  // Step 3: Keep only passed exams (score >= 60).
   {
     $match: {
       score: { $gte: 60 }
     }
   },
-
-  // Step 4: Transform and rename fields for clean UI output.
   {
     $project: {
       _id: 0,
@@ -219,7 +168,6 @@ db.exam_results.aggregate([
       score: 1,
       maxScore: 1,
       grade: {
-        // Compute a 0-10 grade from score/maxScore
         $round: [
           { $multiply: [{ $divide: ["$score", "$maxScore"] }, 10] },
           1
@@ -227,17 +175,12 @@ db.exam_results.aggregate([
       }
     }
   },
-
-  // Step 5: Sort by computed grade descending.
   {
     $sort: { grade: -1 }
   },
-
-  // Step 6: Return only the top 10 results.
   {
     $limit: 10
   }
-
 ])
 
 // SQL equivalent:
